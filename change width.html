@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>多物体运动</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+      div{
+      	background-color: #9FD;
+      	width: 300px;
+      	height: 200px;
+      	margin:10px 0 0 10px;
+      }
+
+	</style>
+</head>
+<body>
+<div>请移动鼠标</div>
+<div>请移动鼠标</div>
+<div>请移动鼠标</div>
+</body>
+<script type="text/javascript">
+    var Divs = document.getElementsByTagName('div');
+	window.onload = function(){
+		for(var i = 0;i<Divs.length;i++){
+			Divs[i].timer = null;
+			Divs[i].onmouseover = function(){
+				startMove(this,500);
+			}
+			Divs[i].onmouseout = function(){
+				startMove(this,300);
+			}
+		}
+	}
+
+	function startMove(obj,target){
+		    clearInterval(obj.timer);
+			obj.timer = setInterval(function(){
+				var speed = (target-obj.offsetWidth)/20;
+				speed = speed>0?Math.ceil(speed):Math.floor(speed);
+			if(target == obj.offsetWidth){
+				clearInterval(obj.timer);
+			}
+			else{
+				
+				obj.style.width = obj.offsetWidth + speed+'px';
+			}
+		},30)
+	}
+</script>
+</html>
