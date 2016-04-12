@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>透明度变化运动</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+	   div{
+	   	background-color: #43f;
+	   	opacity: 0.3;
+	   	filter: alpha(opacity:30);
+	   	width: 200px;
+	   	height: 130px;
+	   	margin: 10px 0 0 10px;
+	   }
+
+	</style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+</body>
+<script type="text/javascript">
+    var Odiv = document.getElementsByTagName('div');
+	window.onload = function(){
+		for (var i = 0;i<Odiv.length;i++){
+			Odiv[i].timer = null;
+			Odiv[i].alpha = 30;
+			Odiv[i].onmouseover = function(){
+				moveStart(this,100);
+			}
+			Odiv[i].onmouseout = function(){
+				moveStart(this,30);
+			}
+		}
+    }
+
+	function moveStart(obj,target){
+		clearInterval(obj.timer);
+		var speed =0;
+		
+		obj.timer = setInterval(function(){
+			if (target > obj.alpha){
+				speed = 10;
+			}
+			else{
+                speed = -10;
+			}
+
+			if (target == obj.alpha){
+				clearInterval(obj.timer);
+			}
+			else{
+				obj.alpha +=speed;
+				obj.style.filter = 'alpha(opacity:'+obj.alpha+')';
+				obj.style.opacity = obj.alpha/100;
+			}
+			
+		},30);
+	}
+</script>
+</html>
