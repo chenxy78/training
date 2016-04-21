@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        
+        <title>挑战题</title>
+    </head>
+    <body>
+    <br/>  
+    <br/>
+    
+    <input type="text" id="input1" placeholder="请输入姓名"></input>
+    <input type="text" id="input2" placeholder="请输入成绩"></input>
+    <button>提交</button>
+    <table>
+    </table>
+    </body>
+    <script>
+        $(function(){
+            var $jsonStu = [
+          {"name":"张三","score":90},
+          {"name":"李四","score":87}
+            ]
+            $.each($jsonStu,function(index,stu){
+                $("table").append("<tr><td>"+stu.name+"</td><td>"+stu.score+"</td></tr>");
+            });
+            $("button").bind("click",function(){
+                
+            $jsonStu.push({"name":$("#input1").val(),"score":$("#input2").val()});
+            $("table").empty();
+            $.each($jsonStu,function(index,stu){       
+                $("table").append("<tr><td>"+stu.name+"</td><td>"+stu.score+"</td></tr>");
+            });
+            })
+            })
+            
+            
+        </script>
+</html>
