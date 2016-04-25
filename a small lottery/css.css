@@ -1,0 +1,38 @@
+*{
+	padding:0;
+	margin: 0;
+}
+
+p{
+	width: 400px;
+	height: 50px;
+	font-size: 30px;
+	font-family: "微软雅黑";
+	color: red;
+	text-align: center;
+	font-weight: bold;
+	margin: 30px auto;
+}
+
+button{
+	width: 130px;
+	height: 30px;
+	text-align: center;
+	background-color: #4fc;
+	margin: 20px auto;
+	cursor: pointer;
+	border: none;
+	border-radius: 10px;
+	display: block;
+}
+
+span{
+	width: 400px;
+	height: 30px;
+	color: red;
+	font-family: "黑体";
+	font-size: 24px;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
