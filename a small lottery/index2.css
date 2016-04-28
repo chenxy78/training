@@ -1,0 +1,47 @@
+*{margin:0;
+  padding:0;}
+
+.title{
+   width:100%;
+   height:70px;
+   margin:50px auto;
+   padding-top:30px;
+   text-align:center;
+   font-size:24px;
+   font-weight:bold;
+   color:#F00;
+}
+
+.btns{
+  width:100%;
+  height:30px;
+  margin:0 auto;
+  }
+
+.btns span{
+   display:block;
+   float:left;
+   width:80px;
+   height:27px;
+   line-height:27px;
+   background:#000;
+   border:1px solid #eee;
+   border-radius:7px;
+   color:#FFF;
+   text-align:center;
+   font-size:14px;
+   font-family:"微软雅黑";
+   cursor:pointer;
+
+}
+.btns #play{
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+}
+
+.btns #stop{
+  position: absolute;
+  left: 50%;
+  margin-left: 20px;
+}
