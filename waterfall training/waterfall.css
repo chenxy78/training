@@ -1,0 +1,41 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+body{
+	background-color: #eee;
+}
+
+h3{
+    text-align: center;
+    width: 500px;
+    margin: 0 auto;
+    color: rgb(113,77,139);
+    font-size: 40px;
+    margin-top: 20px;
+}
+
+#main{
+	position: relative;
+    width: 1200px;
+    margin: 0 auto;
+
+}
+
+.box{
+    float: left;
+    padding:20px 0 0 15px;
+}
+
+.pic{
+    padding: 10px;
+    border-radius:10px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px #aaa;
+
+}
+.pic img{
+	width: 150px;
+    height: auto;
+}
