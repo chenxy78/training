@@ -11,17 +11,19 @@ form{ height:30px; line-height:30px}
 .btn{ height:24px;width:50px;vertical-align:middle; border:1px solid #333; background:#ccc;cursor:pointer;}
 </style>
 </head>
-<script type="text/javascript">
+<script type="text/javascript"> 
 window.onload=function(){
     var oBtn=document.getElementById('submitBtn');
     var oInput=document.getElementById('name');
     oBtn.onclick=function(){
-        var re = /(a-z|A-Z)\w{4,19}/ig;  /*只能输入5-20个字符，以“字母”开头*/;
-        if(re.test(oInput.value)==false){
-            alert("× 格式错误！");
+        var re = /^[a-z]/i;  /*只能输入5-20个字符，以“字母”开头*/
+        if(re.test(oInput.value) && oInput.value.length>=5 && oInput.value.length<=20){
+            alert("√ 格式正确！");
+            oInput.focus();
         }
         else{
-            alert("√ 格式正确！");
+            alert("× 格式错误！");
+            oInput.focus();
         }
     }
 }
