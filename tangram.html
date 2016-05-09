@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>七巧板</title>
+	<meta charset="utf-8">
+</head>
+<body>
+<canvas id="canvas" width="1000" height="600" style="display:block; margin: 30px auto; border:1px solid #aaa"></canvas>
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+	window.onload=function(){
+		blue();
+		green();
+		pink();
+		purple();
+		yellow();
+		red();
+		black();
+	}
+     
+
+	function blue(){
+		context.beginPath();//开始绘制
+		context.moveTo(250,50);
+		context.lineTo(500,300);
+		context.lineTo(250,550);
+		context.lineTo(250,50);
+		context.lineWidth = 5;
+		context.strokeStyle = 'black';
+		context.stroke();   //绘制线条
+		context.fillStyle = 'blue';
+		context.fill();    //填充颜色
+		context.closePath(); //结束绘制
+
+	}
+
+	function green(){
+		context.beginPath();//开始绘制
+		context.moveTo(250,50);
+		context.lineTo(750,50);
+		context.lineTo(500,300);
+		context.lineTo(250,50);
+		context.lineWidth = 5;
+		context.strokeStyle = 'black';
+		context.stroke();   //绘制线条
+		context.fillStyle = 'green';
+		context.fill();    //填充颜色
+		context.closePath(); //结束绘制
+	}
+
+	function pink(){
+		context.beginPath();//开始绘制
+		context.moveTo(250,550);
+		context.lineTo(500,550);
+		context.lineTo(375,425);
+		context.lineTo(250,550);
+		context.lineWidth = 5;
+		context.strokeStyle = 'black';
+		context.stroke();   //绘制线条
+		context.fillStyle = 'pink';
+		context.fill();    //填充颜色
+		context.closePath(); //结束绘制
+	}
+
+	function purple(){
+		context.beginPath();//开始绘制
+		context.moveTo(500,300);
+		context.lineTo(625,425);
+		context.lineTo(500,550);
+		context.lineTo(375,425);
+		context.lineTo(500,300);
+		context.lineWidth = 5;
+		context.strokeStyle = 'black';
+		context.stroke();   //绘制线条
+		context.fillStyle = 'purple';
+		context.fill();    //填充颜色
+		context.closePath(); //结束绘制
+	}
+
+	function yellow(){
+		context.beginPath();//开始绘制
+		context.moveTo(500,300);
+		context.lineTo(625,175);
+		context.lineTo(625,425);
+		context.lineTo(500,300);
+		context.lineWidth = 5;
+		context.strokeStyle = 'black';
+		context.stroke();   //绘制线条
+		context.fillStyle = 'yellow';
+		context.fill();    //填充颜色
+		context.closePath(); //结束绘制
+	}
+
+	function red(){
+		context.beginPath();//开始绘制
+		context.moveTo(625,175);
+		context.lineTo(750,50);
+		context.lineTo(750,300);
+		context.lineTo(625,425);
+		context.lineWidth = 5;
+		context.strokeStyle = 'black';
+		context.stroke();   //绘制线条
+		context.fillStyle = 'red';
+		context.fill();    //填充颜色
+		context.closePath(); //结束绘制
+	}
+	function black(){
+		context.beginPath();//开始绘制
+		context.moveTo(750,300);
+		context.lineTo(750,550);
+		context.lineTo(500,550);
+		context.lineWidth = 5;
+		context.strokeStyle = 'black';
+		context.stroke();   //绘制线条
+		context.fillStyle = 'black';
+		context.fill();    //填充颜色
+		context.closePath(); //结束绘制
+	}
+</script>
+</html>
