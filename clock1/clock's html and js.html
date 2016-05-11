@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>用canva做出绚丽时钟效果</title>
+	<meta charset="utf-8">
+</head>
+<body>
+<canvas style="border: 1px solid black">当前浏览器不支持Canvas，请更换浏览器后再试</canvas>
+</body>
+<script type="text/javascript" src="digit.js"></script>
+<script type="text/javascript">
+    var RADIUS = 8;
+    var MARGINTOP = 100;
+    var MARGINLEFT = 75;
+    var WINDOW_WIDTH =1240;
+    var WINDOW_HEIGHT = 600;
+
+	window.onload = function(){
+		var canvas = document.getElementsByTagName('canvas')[0];
+		var context = canvas.getContext('2d');
+		canvas.width = WINDOW_WIDTH;
+		canvas.height = WINDOW_HEIGHT;
+
+		setInterval(function(){
+			clock(context);
+		},500);
+	}
+
+	function clock(context){
+        context.clearRect(0,0,WINDOW_WIDTH, WINDOW_HEIGHT);
+
+		var curTime = new Date();
+		var endTime = new Date(curTime.getFullYear(),curTime.getMonth(),curTime.getDate()+3,12,12,12);
+		var minus = parseInt((endTime.getTime() - curTime.getTime())/1000);
+
+		var hours = parseInt(minus/(60*60));
+		var minutes = parseInt(minus/60%60);
+		var seconds = parseInt(minus%60);
+		
+		draw(context,parseInt(hours/10),MARGINLEFT,MARGINTOP);
+		draw(context,parseInt(hours%10),MARGINLEFT + (RADIUS+1)*18,MARGINTOP);
+		draw(context,10,MARGINLEFT + (RADIUS+1)*36,MARGINTOP);
+		draw(context,parseInt(minutes/10),MARGINLEFT + (RADIUS+1)*48,MARGINTOP);
+		draw(context,parseInt(minutes%10),MARGINLEFT + (RADIUS+1)*64,MARGINTOP);
+		draw(context,10,MARGINLEFT + (RADIUS+1)*82,MARGINTOP);
+		draw(context,parseInt(seconds/10),MARGINLEFT + (RADIUS+1)*94,MARGINTOP);
+		draw(context,parseInt(seconds%10),MARGINLEFT + (RADIUS+1)*112,MARGINTOP);
+
+		
+}
+
+function draw(context,data,x,y){
+		
+		for (var i = 0;i < digit[data].length;i++){
+			for(var j = 0;j < digit[data][i].length;j++){
+				if(digit[data][i][j] == 1){
+					var m = (RADIUS + 1)*2*j + (RADIUS + 1);
+					var n = (RADIUS + 1)*2*i + (RADIUS + 1);
+					context.beginPath();
+					context.arc(x+m,y+n,RADIUS,0,2*Math.PI);
+					context.fillStyle = "#abc";
+					context.fill();
+					context.stroke();
+					context.closePath();
+				}
+			}
+		}
+}
+</script>
+</html>
