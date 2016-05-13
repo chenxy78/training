@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>抽数</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+	button{
+		width: 100px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		color:#000;
+		background-color: #3f0;
+		border: none;
+		cursor: pointer;
+		font-weight: bold;
+	}
+	.btn{
+		width: 100px;
+		margin: 40px auto;
+	}
+	p{
+		width: 400px;
+		text-align: center;
+		height: 200px;
+		margin: 30px auto;
+		font-size: 30px;
+	}
+	span{
+		width: 100%;
+		padding-left: 50%;
+		margin-left: -400px;
+		font-size: 30px;
+	}
+	</style>
+</head>
+<body>
+
+	<div class="btn">
+		<button>开始抽数</button>
+	</div>
+<p></p>
+</body>
+<script type="text/javascript">
+	var btn = document.getElementsByTagName('button')[0];
+	var p =document.getElementsByTagName('p')[0];
+	var timer = null;
+	var flag = 0;
+	var record = [];
+	var newp = document.createElement('span');
+
+	window.onload = function(){
+		btn.onclick = function(){
+
+			if(flag == 0){
+				clearInterval(timer);
+				timer = setInterval(function(){
+					var math = Math.floor(Math.random()*30+1);
+					p.innerHTML = math;
+					btn.innerHTML = '停止抽数';
+				},20);
+				flag = 1;
+			}
+
+			else{
+				btn.innerHTML = '开始抽数';
+				clearInterval(timer);
+				flag = 0;
+				record.push(p.innerHTML);
+				newp.innerHTML = record;
+				document.getElementsByTagName('body')[0].appendChild(newp);
+
+			}
+			
+			
+		}
+	}
+
+</script>
+</html>
