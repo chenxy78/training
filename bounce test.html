@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>用canva做出绚丽时钟效果</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<canvas style="border: 1px solid black">当前浏览器不支持Canvas，请更换浏览器后再试</canvas>
+</body>
+<script type="text/javascript">
+    var RADIUS = 8;
+    var MARGINTOP = 100;
+    var MARGINLEFT = 75;
+    var WINDOW_WIDTH =1240;
+    var WINDOW_HEIGHT = 600;
+
+    window.onload = function(){
+        var canvas = document.getElementsByTagName('canvas')[0];
+        var context = canvas.getContext('2d');
+        canvas.width = WINDOW_WIDTH;
+        canvas.height = WINDOW_HEIGHT;
+
+        setInterval(function(){
+            clock(context);
+            update();
+        },50);
+    }
+    
+    var ball = {x:200, y:100, r:8, vx:10,vy:-10,g:2,color:'#058'};
+    function clock(context){
+        context.clearRect(0,0,WINDOW_WIDTH, WINDOW_HEIGHT);
+        context.beginPath();
+        context.fillStyle = ball.color;
+        context.arc(ball.x,ball.y,ball.r,0,2*Math.PI);
+        context.fill();      
+        context.closePath();
+}
+    function update(){
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+        ball.vy += ball.g;
+
+        if(ball.y >= WINDOW_HEIGHT - ball.r){
+            ball.y = WINDOW_HEIGHT - ball.r;
+            ball.vy = -ball.vy*0.7;
+            
+        }
+        if(ball.x >= WINDOW_WIDTH - ball.r){
+            ball.x =WINDOW_WIDTH - ball.r;
+            ball.vx = -ball.vx*0.96;
+        }
+    }
+
+
+</script>
+</html>
