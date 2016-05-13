@@ -4,16 +4,16 @@
 	<title>用canva做出绚丽时钟效果</title>
 	<meta charset="utf-8">
 </head>
-<body>
-<canvas style="border: 1px solid black">当前浏览器不支持Canvas，请更换浏览器后再试</canvas>
-</body>
+<body style="height: 100%">
+<canvas style="height: 100%;border:1px solid black" >当前浏览器不支持Canvas，请更换浏览器后再试</canvas>
+
 <script type="text/javascript" src="digit.js"></script>
 <script type="text/javascript">
-    var RADIUS = 8;
-    var MARGINTOP = 100;
-    var MARGINLEFT = 75;
-    var WINDOW_WIDTH =1260;
+    var WINDOW_WIDTH = document.body.clientWidth;
     var WINDOW_HEIGHT = 600;
+    var MARGINTOP = Math.round(WINDOW_HEIGHT/4);
+    var MARGINLEFT = Math.round(WINDOW_WIDTH/10);
+    var RADIUS = Math.round(WINDOW_WIDTH * 4 / 5 / 126) - 1;
     var minus = getCurTime();
     var balls = [];
     var colors = ["#33B5E5","#0099CC","#AA66CC","#9933CC","#99CC00","#669900","#FFBB33","#FF8800","#FF4444","#CC0000"];
@@ -95,6 +95,7 @@
 	}
 
 	function updateBalls(){
+		
 		for(var i = 0;i<balls.length;i++){
 			balls[i].x += balls[i].vx;
 			balls[i].y += balls[i].vy;
@@ -104,7 +105,17 @@
 				balls[i].y = WINDOW_HEIGHT - RADIUS;
 				balls[i].vy = -balls[i].vy*0.5;
 		    }
-		}	
+		}
+
+		var cnt = 0;
+	    for( var i = 0 ; i < balls.length ; i ++ )
+	        if( balls[i].x + RADIUS > 0 && balls[i].x -RADIUS < WINDOW_WIDTH )
+	            balls[cnt++] = balls[i];
+
+	    while( balls.length > cnt ){
+	        balls.pop();
+	    }
+       
 	}
 
 	function clock(context){
@@ -151,4 +162,5 @@ function draw(context,data,x,y){
 		}
 }
 </script>
+
 </html>
