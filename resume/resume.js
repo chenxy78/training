@@ -1,8 +1,8 @@
 var aPrevious = document.getElementById('previous');
 var aNext = document.getElementById('next');
 var flag = 1;
-var z = [100,90,80,70,60,50,40,30];//设置翻页时右边的z-index
-var z2 = [30,40,50,60,70,80,90,100];//设置翻页时作业的z-index
+var z = [100,90,80,70,60,50,40,30];//设置翻页时右页的z-index
+var z2 = [30,40,50,60,70,80,90,100];//设置翻页时左页的z-index
 
 function next(){
 	if(flag == 7){
