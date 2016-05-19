@@ -152,6 +152,7 @@ body{
 }
 p{
 	text-indent: 2em;
+	line-height: 25px;
 }
 #box5{
 	z-index: 4;
@@ -165,7 +166,7 @@ p{
 }
 
 #box5 .special{
-	margin-top: 20px;
+	margin-top: 15px;
 }
 #box6{
 	z-index: 3;
@@ -182,6 +183,8 @@ p{
 	text-align: left;
 	margin-top: 40px;
 	margin-left: 40px;
+	width: 400px;
+	line-height: 25px;
 }
 #box7 ul ol li{
 	margin-left: 40px;
@@ -203,6 +206,7 @@ p{
 	margin-top: 40px;
 	margin-left: 40px;
 	width: 400px;
+	line-height: 25px;
 }
 #box8 span.end{
 	position: absolute;
