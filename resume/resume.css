@@ -83,10 +83,10 @@ body{
 .title{
 	font-size: 25px;
 	display: block;
-	width: 105px;
-	margin-bottom:5px;
+	width: 110px;
 	margin-left: 30px;
 	padding-top: 30px;
+	padding-bottom:5px;
 	text-align: center;
 	border-bottom: 2px solid white;
 	font-weight: bold;
