@@ -12,19 +12,17 @@
 		var canvas = document.getElementsByTagName('canvas')[0];
 		var context = canvas.getContext('2d');
       
-		canvas.width = 600;
+		canvas.width = 1200;
 		canvas.height = 600;
 		canvas.style.display = "block";
 		canvas.style.margin = "20px auto";
 		canvas.style.border = "1px solid black";
         
-
         var grd = context.createLinearGradient(0,0,0,600);
         grd.addColorStop(0.0,"#000");
         grd.addColorStop(1.0,"rgb(12,19,69)");
         context.fillStyle = grd;
-        context.fillRect(0,0,600,600);
-
+        context.fillRect(0,0,canvas.width,canvas.height);
         for(var i =0 ; i< 130;i++){
         	var x = Math.random()*canvas.width;
         	var y = Math.random()*canvas.height*0.5;
@@ -40,40 +38,86 @@
             if (y <= zoom) {
             	y = zoom;
             };
-
         	drawStars(context,x,y,degree,zoom);
         }
+
+        drawMoon(context,950,150,80,30);
+        drawground(context);
+        chinese(context);
 		
 	}
-
 	function drawStars(cxt,x,y,degree,zoom){
 		
 		
 			cxt.save();
-
 			cxt.translate(x,y);
 			cxt.rotate(degree);
 			cxt.scale(zoom,zoom);
 			drawAStar(cxt);
-
 			cxt.restore();
 		
 		
 		
 		
 	}
-
 	function drawAStar(cxt){
         cxt.beginPath();
 		for(var i = 0;i < 6;i++){
 			cxt.lineTo(Math.cos((18+i*72)/180*Math.PI),-Math.sin((18+i*72)/180*Math.PI));
-			cxt.lineTo(Math.cos((54+i*72)/180*Math.PI)*0.5,-Math.sin((54+i*72)/180*Math.PI)*0.6);
+			cxt.lineTo(Math.cos((54+i*72)/180*Math.PI)*0.5,-Math.sin((54+i*72)/180*Math.PI)*0.5  );
 		}
-
 		cxt.fillStyle = "rgb(247,228,9)";
 		cxt.fill();
-
 		cxt.closePath();
+	}
+	function drawMoon(cxt,x,y,R,rot){
+		cxt.save();
+		cxt.translate(x,y);
+		cxt.scale(R,R);
+		cxt.rotate(rot/180*Math.PI);
+		moonPath(cxt);
+		cxt.fillStyle = "rgb(247,228,9)";
+		cxt.fill();
+		cxt.restore();
+	}
+
+	function moonPath(cxt){
+		cxt.beginPath();
+		cxt.arc(0,0,1,0.5*Math.PI,1.5*Math.PI,true);
+		cxt.moveTo(0,-1);
+		cxt.arcTo(1.2,0,0,1,dis(1.2,0,0,-1)/1.2);
+		cxt.closePath();
+	}
+
+	function dis(x1,y1,x2,y2){
+		return Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+	}
+
+	function drawground(cxt){
+		cxt.beginPath();
+		cxt.moveTo(0,500);
+		cxt.bezierCurveTo(600,300,600,700,1200,500);
+		cxt.lineTo(1200,600);
+		cxt.lineTo(0,600);
+		cxt.closePath();
+		cxt.fillStyle = "green";
+		cxt.fill();
+
+	}
+	function chinese(cxt){
+		cxt.beginPath();
+		cxt.font = "bold 40px Arial";
+		var bgcolor = cxt.createLinearGradient(800,400,870,400);
+		bgcolor.addColorStop(0.0,"red");
+		bgcolor.addColorStop(0.25,"green");
+		bgcolor.addColorStop(0.75,"yellow");
+		bgcolor.addColorStop(1.0,"blue");
+		cxt.fillStyle = bgcolor;
+		cxt.fillText("星  空",800,400);
 	}
 </script>
 </html>
+
+
+
+
