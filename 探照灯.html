@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>探照灯</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<canvas>您的浏览器不支持canvas，请换一个浏览器</canvas>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		var canvas = document.getElementsByTagName('canvas')[0];
+		canvas.width = 1000;
+		canvas.height = 600;
+		canvas.style.display = "block";
+		canvas.style.margin = "10px auto";
+		canvas.style.border = "1px solid black";
+
+		var context = canvas.getContext('2d');
+
+		var ball = {
+			x:Math.random()*canvas.width,
+			y:Math.random()*canvas.height,
+			r:150,
+			vx:10,
+			vy:10
+		}
+
+
+		setInterval(function(){
+			draw(context,ball);
+			updateBall(context,ball);
+		},50);
+
+	}
+
+	function draw(cxt,ball){
+		cxt.clearRect(0,0,1000,600);
+
+		cxt.save();
+
+		cxt.beginPath();
+		cxt.fillStyle = "black";
+		cxt.fillRect(0,0,cxt.canvas.width,cxt.canvas.height);
+
+		cxt.beginPath();
+		cxt.arc(ball.x,ball.y,ball.r,0,2*Math.PI);
+		cxt.fillStyle = "#fff";
+		cxt.fill();
+		cxt.clip();
+		cxt.font = "bold 120px Arid";
+		cxt.fillStyle = "red";
+		cxt.textAlign = "center";
+		cxt.Baseline = "middle";
+		cxt.fillText("I love canvas!",500,300,1000);
+		cxt.fillText("Canvas is amazing!",500,150,1000);
+		cxt.fillText("Do you like it?",500,450,1000);
+
+		cxt.restore();
+	}
+    
+    function updateBall(cxt,ball){
+
+    	ball.x += ball.vx;
+    	ball.y += ball.vy;
+    	if(ball.x >= cxt.canvas.width - ball.r || ball.x <= ball.r){
+    		ball.vx = -ball.vx;
+    	}
+    	if(ball.y >= cxt.canvas.height -ball.r || ball.y <= ball.r){
+    		ball.vy = -ball.vy;
+    	}
+
+    }
+</script>
+</html>
