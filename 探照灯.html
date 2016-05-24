@@ -8,7 +8,7 @@
 	<canvas>您的浏览器不支持canvas，请换一个浏览器</canvas>
 </body>
 <script type="text/javascript">
-	window.onload = function(){
+	
 		var canvas = document.getElementsByTagName('canvas')[0];
 		canvas.width = 1000;
 		canvas.height = 600;
@@ -18,21 +18,22 @@
 
 		var context = canvas.getContext('2d');
 
+		var R = 150;
+
 		var ball = {
-			x:Math.random()*canvas.width,
-			y:Math.random()*canvas.height,
-			r:150,
+			x:Math.random() + 2 * R,
+			y:Math.random() + 2 * R,
 			vx:10,
 			vy:10
-		}
+		};
 
 
 		setInterval(function(){
 			draw(context,ball);
 			updateBall(context,ball);
-		},50);
+		},30);
 
-	}
+	
 
 	function draw(cxt,ball){
 		cxt.clearRect(0,0,1000,600);
@@ -44,7 +45,7 @@
 		cxt.fillRect(0,0,cxt.canvas.width,cxt.canvas.height);
 
 		cxt.beginPath();
-		cxt.arc(ball.x,ball.y,ball.r,0,2*Math.PI);
+		cxt.arc(ball.x,ball.y,R,0,2*Math.PI);
 		cxt.fillStyle = "#fff";
 		cxt.fill();
 		cxt.clip();
@@ -63,10 +64,10 @@
 
     	ball.x += ball.vx;
     	ball.y += ball.vy;
-    	if(ball.x >= cxt.canvas.width - ball.r || ball.x <= ball.r){
+    	if(ball.x >= cxt.canvas.width - R || ball.x <= R){
     		ball.vx = -ball.vx;
     	}
-    	if(ball.y >= cxt.canvas.height -ball.r || ball.y <= ball.r){
+    	if(ball.y >= cxt.canvas.height -R || ball.y <= R){
     		ball.vy = -ball.vy;
     	}
 
