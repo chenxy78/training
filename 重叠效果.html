@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>重叠效果</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<canvas>您的浏览器不支持canvas，请换一个浏览器</canvas>
+</body>
+<script type="text/javascript">
+		var canvas = document.getElementsByTagName('canvas')[0];
+		canvas.width = 1000;
+		canvas.height = 600;
+		canvas.style.display = "block";
+		canvas.style.margin = "10px auto";
+		canvas.style.border = "1px solid black";
+
+		var context = canvas.getContext('2d');
+
+        var balls = [];
+        
+
+        for(var i = 0; i < 50; i++){
+        	var R = Math.floor(Math.random()*256);
+        	var G = Math.floor(Math.random()*256);
+        	var B = Math.floor(Math.random()*256);
+
+        	var r = Math.random()*40 + 30;   //半径需提前定义
+
+        	var ball = {
+        		color:'rgb(' + R + ',' + G + ',' + B + ')',  //颜色要用字符串
+	        	r:r,
+				x:Math.random() * (canvas.width - 2*r) + r, //防止一开始就溢出边界
+				y:Math.random() * (canvas.height - 2*r) + r, //防止一开始就溢出边界
+				vx:(Math.random()*5 + 5 )* Math.pow(-1,Math.floor(Math.random()*100)),
+				vy:(Math.random()*5 + 5 )* Math.pow(-1,Math.floor(Math.random()*100))  //运动方向不同
+		    };
+
+		    balls.push(ball);
+        }
+
+
+		setInterval(function(){
+			draw(context);
+			updateBall(context);
+		},40);
+
+
+	function draw(cxt){
+		cxt.clearRect(0,0,1000,600);
+
+		cxt.globalAlpha = 0.7;
+		//cxt.globalCompositeOperation = "lighter"; //加了后不好看= =
+
+		for(var i =0; i< balls.length;i++){
+			cxt.beginPath();
+			cxt.arc(balls[i].x,balls[i].y,balls[i].r,0,2*Math.PI);
+			cxt.fillStyle = balls[i].color;
+			cxt.fill();
+			cxt.closePath();
+		}
+	}
+    
+    function updateBall(cxt){
+        for (var i = 0; i < balls.length; i++){
+	        balls[i].x += balls[i].vx;
+	    	balls[i].y += balls[i].vy;
+	    	if(balls[i].x > cxt.canvas.width - balls[i].r || balls[i].x < balls[i].r){
+	    		balls[i].vx = -balls[i].vx;
+	    	}
+	    	if(balls[i].y > cxt.canvas.height -balls[i].r || balls[i].y < balls[i].r){
+	    		balls[i].vy = -balls[i].vy;
+	    	}
+        }
+    	
+
+    }
+</script>
+</html>
