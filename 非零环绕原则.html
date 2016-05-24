@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>非零环绕原则</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<canvas>您的浏览器不支持canvas，请换一个浏览器</canvas>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		var canvas = document.getElementsByTagName('canvas')[0];
+		canvas.width = 1000;
+		canvas.height = 600;
+		canvas.style.display = "block";
+		canvas.style.margin = "10px auto";
+		canvas.style.border = "1px solid black";
+
+		var context = canvas.getContext('2d');
+
+		
+		context.beginPath();
+		
+		context.moveTo(150,200);
+		context.lineTo(150,350);
+		context.lineTo(300,350);
+		context.lineTo(300,200);
+		context.lineTo(150,200); //逆时针正方形
+
+		context.arc(500,275,100,0,2*Math.PI,true);//逆时针圆
+
+		context.moveTo(750,200);
+		context.lineTo(750 - 50*Math.sqrt(3),350);
+		context.lineTo(750 + 50*Math.sqrt(3),350);
+		context.lineTo(750,200);//逆时针三角形
+
+		context.closePath();
+
+		context.shadowColor = "#aaa";
+		context.shadowOffsetX = 5;//右
+		context.shadowOffsetY = 5;//下
+		context.shadowBlur = 5;
+
+		context.fillStyle = "#000";
+		context.rect(100,100,800,400);
+
+		context.fill();
+
+	}
+
+</script>
+</html>
