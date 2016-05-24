@@ -29,13 +29,13 @@
 
 
 		setInterval(function(){
-			draw(context,ball);
-			updateBall(context,ball);
-		},30);
+			draw(context);
+			updateBall(context);
+		},40);
 
 	
 
-	function draw(cxt,ball){
+	function draw(cxt){
 		cxt.clearRect(0,0,1000,600);
 
 		cxt.save();
@@ -60,7 +60,7 @@
 		cxt.restore();
 	}
     
-    function updateBall(cxt,ball){
+    function updateBall(cxt){
 
     	ball.x += ball.vx;
     	ball.y += ball.vy;
