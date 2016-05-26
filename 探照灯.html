@@ -21,8 +21,8 @@
 		var R = 150;
 
 		var ball = {
-			x:Math.random() + 2 * R,
-			y:Math.random() + 2 * R,
+			x:Math.random() * (canvas.width - 2*R) + R,
+			y:Math.random() * (canvas.height - 2*R) + R,
 			vx:10,
 			vy:10
 		};
