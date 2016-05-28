@@ -231,9 +231,10 @@ a{
 
 }
 .btns{
-	float: right;
-	margin-right: 50px;
-	margin-top: 100px;
+	position: absolute;
+	left: 1050px;
+	top: 100px;
+	width: 200px;
 }
 .before{
 	background-color: black;
