@@ -1,79 +1,139 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>重叠效果</title>
-	<meta charset="utf-8">
-</head>
-<body>
-	<canvas>您的浏览器不支持canvas，请换一个浏览器</canvas>
-</body>
-<script type="text/javascript">
-		var canvas = document.getElementsByTagName('canvas')[0];
-		canvas.width = 1000;
-		canvas.height = 600;
-		canvas.style.display = "block";
-		canvas.style.margin = "10px auto";
-		canvas.style.border = "1px solid black";
+    <title>重叠效果</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        *{
+            margin:0;
+            padding: 0;
+        }
 
-		var context = canvas.getContext('2d');
+        .canvasWrapper{
+            width: 1000px;
+            height: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .buttons{
+            position: absolute;
+            top:10px;
+            left: 10px;
+            width: 200px;
+            height: 100px;
+            background-color: rgba(224,123,123,0.7);
+        }
 
-        var balls = [];
-        
-
-        for(var i = 0; i < 50; i++){
-        	var R = Math.floor(Math.random()*256);
-        	var G = Math.floor(Math.random()*256);
-        	var B = Math.floor(Math.random()*256);
-
-        	var r = Math.random()*40 + 30;   //半径需提前定义
-
-        	var ball = {
-        		color:'rgb(' + R + ',' + G + ',' + B + ')',  //颜色要用字符串
-	        	r:r,
-				x:Math.random() * (canvas.width - 2*r) + r, //防止一开始就溢出边界
-				y:Math.random() * (canvas.height - 2*r) + r, //防止一开始就溢出边界
-				vx:(Math.random()*5 + 5 )* Math.pow(-1,Math.floor(Math.random()*100)),
-				vy:(Math.random()*5 + 5 )* Math.pow(-1,Math.floor(Math.random()*100))  //运动方向不同
-		    };
-
-		    balls.push(ball);
+        button{
+            width: 80px;
+            border: none;
+            background-color: #CFF;
+            margin-left: 10px;
+            margin-top: 25px;
+            height: 50px;
+            font-size: 20px;
+            border-radius: 20%;
         }
 
 
-		setInterval(function(){
-			draw(context);
-			updateBall(context);
-		},40);
+
+    </style>
+</head>
+<body>
+    <div class = "canvasWrapper">
+        <canvas>您的浏览器不支持canvas，请换一个浏览器</canvas>
+        <div class = "buttons">
+            <button id="btn1">开始运动</button>
+            <button id="btn2">停止运动</button>
+        </div>
+    </div>
+        
+</body>
+<script type="text/javascript">
+        var canvas = document.getElementsByTagName('canvas')[0];
+        canvas.width = 1000;
+        canvas.height = 600;
+        canvas.style.display = "block";
+        canvas.style.margin = "10px auto";
+        canvas.style.border = "1px solid black";
+        var context = canvas.getContext('2d');
+        var balls = [];
+        var timer = null;
+        var flag = 0;
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+
+for(var i = 0; i < 50; i++){
+            var R = Math.floor(Math.random()*255);
+            var G = Math.floor(Math.random()*255);
+            var B = Math.floor(Math.random()*255);
+            var r = Math.random()*40 + 30;   //半径需提前定义
+            var ball = {
+                color:'rgb(' + R + ',' + G + ',' + B + ')',  //颜色要用字符串
+                r:r,
+                x:Math.random() * (canvas.width - 2*r) + r, //防止一开始就溢出边界
+                y:Math.random() * (canvas.height - 2*r) + r, //防止一开始就溢出边界
+                vx:(Math.random()*5 + 5 )* Math.pow(-1,Math.floor(Math.random()*100)),
+                vy:(Math.random()*5 + 5 )* Math.pow(-1,Math.floor(Math.random()*100))  //运动方向不同
+            };
+            balls.push(ball);
+        }
+
+        time = setInterval(function(){
+            draw(context);
+            updateBall(context);
+        },40);
 
 
-	function draw(cxt){
-		cxt.clearRect(0,0,1000,600);
-
-		cxt.globalAlpha = 0.7;
-		//cxt.globalCompositeOperation = "lighter"; //加了后不好看= =
-
-		for(var i =0; i< balls.length;i++){
-			cxt.beginPath();
-			cxt.arc(balls[i].x,balls[i].y,balls[i].r,0,2*Math.PI);
-			cxt.fillStyle = balls[i].color;
-			cxt.fill();
-			cxt.closePath();
-		}
-	}
+function draw(cxt){
+        cxt.clearRect(0,0,1000,600);
+        cxt.globalAlpha = 0.7;
+        //cxt.globalCompositeOperation = "lighter"; //加了后不好看= =
+        for(var i =0; i< balls.length;i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,balls[i].r,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.fill();
+            cxt.closePath();
+        }
+    }
     
     function updateBall(cxt){
         for (var i = 0; i < balls.length; i++){
-	        balls[i].x += balls[i].vx;
-	    	balls[i].y += balls[i].vy;
-	    	if(balls[i].x > cxt.canvas.width - balls[i].r || balls[i].x < balls[i].r){
-	    		balls[i].vx = -balls[i].vx;
-	    	}
-	    	if(balls[i].y > cxt.canvas.height -balls[i].r || balls[i].y < balls[i].r){
-	    		balls[i].vy = -balls[i].vy;
-	    	}
-        }
-    	
+            balls[i].x += balls[i].vx;
+            balls[i].y += balls[i].vy;
+            if(balls[i].x > cxt.canvas.width - balls[i].r || balls[i].x < balls[i].r){
+                balls[i].vx = -balls[i].vx;
+                var R = Math.floor(Math.random()*255);
+                var G = Math.floor(Math.random()*255);
+                var B = Math.floor(Math.random()*255);
+                balls[i].color = 'rgb(' + R + ',' + G + ',' + B + ')';
+                }
+            if(balls[i].y > cxt.canvas.height -balls[i].r || balls[i].y < balls[i].r){
+                balls[i].vy = -balls[i].vy;
 
+            }
+        }
+        
     }
+
+    btn1.onclick = function(){
+        clearInterval(time);
+        time = setInterval(function(){
+            draw(context);
+            updateBall(context);
+        },40);
+        btn1.disabled = true;
+        btn2.disabled = false;
+    }
+
+    btn2.onclick = function(){
+        clearInterval(time);
+        btn2.disabled = true;
+        btn1.disabled = false;
+    }
+
+
 </script>
 </html>
+
