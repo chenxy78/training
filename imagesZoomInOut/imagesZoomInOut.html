@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>图片放大缩小</title>
+    <meta charset="utf-8">
+</head>
+<body>
+        <canvas>您的浏览器不支持canvas，请换一个浏览器</canvas>  
+        <input id="slider" type="range" style="display:block;width:1000px;margin:10px auto" min=0.5 max=3 step=0.05 value=1/>
+</body>
+<script type="text/javascript">
+        var canvas = document.getElementsByTagName('canvas')[0];
+        canvas.width = 1000;
+        canvas.height = 600;
+        canvas.style.display = "block";
+        canvas.style.margin = "10px auto";
+        canvas.style.border = "1px solid black";
+        var cxt = canvas.getContext('2d');
+        var slider = document.getElementById('slider');
+        var image = new Image();
+        image.src = 'test.jpg';
+        var scale = slider.value;
+
+        image.onload = function(){
+            cxt.drawImage(image,,0);
+
+            cxt.clearRect(0,0,canvas.width,canvas.height);
+            window.onmousemove = function(){
+                scale = slider.value;
+                var dx = canvas.width * scale / 2 - image.width / 2;
+                var dy = canvas.width * scale / 2 - image.height / 2;
+                cxt.drawImage(image,dx,dy,image.width * scale,image.height * scale);
+            }
+            
+        }
+        
+
+</script>
+</html>
+
