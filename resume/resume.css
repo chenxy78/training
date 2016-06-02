@@ -22,7 +22,7 @@
 	position: relative;
 	width: 500px;
 	height: 640px;
-	margin:10px 0 10px 530px;
+	margin: 35px 0 10px 530px;
 
 	-moz-transform-style:preserve-3d;
 	-webkit-transform-style:preserve-3d;
@@ -35,7 +35,7 @@
 	position: absolute;
 	border-left: 2px dotted #fff;
 	
-	background-color: #000;
+	background: url(try.png);
 	color: #fff;
 	
 	font-family: "微软雅黑";
@@ -215,7 +215,7 @@ p{
 	font-style: italic;
 }
 a{
-	background-color: black;
+	background-color: #063;
 	color: white;
 	display: inline-block;
 	width: 60px;
@@ -235,7 +235,7 @@ a{
 	width: 200px;
 }
 .before{
-	background-color: black;
+	background-color: #063;
 	cursor: pointer;
 
 }
@@ -245,12 +245,12 @@ a{
 }
 .category{
 	position: absolute;
-	top: 200px;
+	top: 220px;
 	left: 1020px;
 }
 
 .category a{
-	background-color: #000;
+	background-color: #030;
 	color: white;
 	display: block;
 	width: 80px;
@@ -264,7 +264,29 @@ a{
 .notice{
 	display: block;
 	position: absolute;
-	top: 10px;
+	top: 50px;
 	left: 1050px;
-	width: 160px;
+	width: 210px;
+	text-indent: 2em;
+	font-size: 18px;
+	border: 2px solid #F66;
+}
+
+.move{
+	margin-top: 10px;
+	width: 100%;
+	height: 25px;
+	background: #396;
+	position: relative;
+}
+
+div.move #welcome{
+	text-indent: 0;
+	width: 300px;
+	font-size: 20px;
+	height: 25px;
+	line-height: 25px;
+	color: yellow;
+	position: absolute;
+	left: 300px;
 }
