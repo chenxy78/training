@@ -3,6 +3,8 @@ var aNext = document.getElementById('next');
 var flag = 1;
 var z = [100,90,80,70,60,50,40,30];//设置翻页时右页的z-index
 var z2 = [30,40,50,60,70,80,90,100];//设置翻页时左页的z-index
+var charactor = document.getElementById('welcome');
+var left = 300;//用于储存welcome语的left值
 
 function next(){
 	if(flag == 7){
@@ -82,4 +84,21 @@ document.onkeyup = function(event){
 		previous();
 	}
 }
+
+setInterval(function(){
+	welcome();
+},70);
+
+
+
+function welcome(){
+	charactor.innerHTML = 'welcome&nbsp&nbspto&nbsp&nbspmy&nbsp&nbspresume&nbsp~~';
+	left -= 5;
+	if (left <= -300){
+		left = charactor.parentNode.offsetWidth;
+	}
+	charactor.style.left = left + 'px';
+	
+}
+
 
