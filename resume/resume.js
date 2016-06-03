@@ -1,17 +1,17 @@
 var aPrevious = document.getElementById('previous');
 var aNext = document.getElementById('next');
 var flag = 1;
-var z = [100,90,80,70,60,50,40,30];//设置翻页时右页的z-index
-var z2 = [30,40,50,60,70,80,90,100];//设置翻页时左页的z-index
+var z = [100,90,80,70,60,50,40,30,20];//设置翻页时右页的z-index
+var z2 = [20,30,40,50,60,70,80,90,100];//设置翻页时左页的z-index
 var charactor = document.getElementById('welcome');
 var left = 300;//用于储存welcome语的left值
 
 function next(){
-	if(flag == 7){
+	if(flag == 8){
 		aNext.className = 'after';
 	}
 
-	if(flag == 8){
+	if(flag == 9){
 		return;
 	}
 	if(flag == 1){
@@ -34,7 +34,7 @@ function previous(){
 	if(flag == 2){
 		aPrevious.className = 'after';
 	}
-	if(flag == 8){
+	if(flag == 9){
 		aNext.className = 'before';
 	}
 
@@ -65,11 +65,11 @@ function set(data){
     }
     
     flag = data;
-    if(flag != 1 && flag != 8){
+    if(flag != 1 && flag != 9){
 			aPrevious.className = 'before';
 			aNext.className = 'before';
         }
-    if(flag == 8){
+    if(flag == 9){
     	aNext.className = 'after';
     	aPrevious.className = 'before';
     }
