@@ -2,6 +2,9 @@
 	padding: 0;
 	margin:0;
 }
+body{
+	min-width: 1280px;
+}
 
 #my3d{
 	-moz-perspective:800;
@@ -201,21 +204,52 @@ p{
 	font-size: 18px;
 
 }
+
 #box8 p{
 	margin-top: 40px;
 	margin-left: 40px;
 	width: 400px;
 	line-height: 25px;
 }
-#box8 span.end{
+
+#box9 ul{
+	width: 400px;
+	margin: 40px auto;
+	list-style: none;
+}
+#box9 li{
+	width: 100%;
+	margin-bottom: 30px;
+	text-align: left;
+	text-indent: 2em;
+	line-height: 25px;
+	color: #fff;
+	font-size: 18px;
+}
+
+#box9 ul li a:link,#box9 ul li a:visited{
+	color: #fff;
+	text-decoration: none;
+}
+
+#box9 ul li a:hover{
+	background-color: #F33;
+	text-decoration: none;
+}
+#box9 span.end{
 	position: absolute;
 	bottom: 20px;
 	right: 20px;
 	font-size: 20px;
 	font-style: italic;
 }
-a{
-	background-color: #063;
+.btns{
+	position: absolute;
+	left: 1050px;
+	top: 120px;
+	width: 200px;
+}
+.btns a,.category a{
 	color: white;
 	display: inline-block;
 	width: 60px;
@@ -228,12 +262,6 @@ a{
 	text-decoration: none;
 
 }
-.btns{
-	position: absolute;
-	left: 1050px;
-	top: 120px;
-	width: 200px;
-}
 .before{
 	background-color: #063;
 	cursor: pointer;
@@ -245,7 +273,7 @@ a{
 }
 .category{
 	position: absolute;
-	top: 220px;
+	top: 200px;
 	left: 1020px;
 }
 
