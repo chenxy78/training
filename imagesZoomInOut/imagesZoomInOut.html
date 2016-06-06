@@ -5,11 +5,12 @@
     <meta charset="utf-8">
 </head>
 <body>
-        <canvas>您的浏览器不支持canvas，请换一个浏览器</canvas>  
+        <canvas id="canvas1">您的浏览器不支持canvas，请换一个浏览器</canvas>  
         <input id="slider" type="range" style="display:block;width:1000px;margin:10px auto" min=0.5 max=3 step=0.05 value=1 />
+        <canvas id="canvas2"></canvas>
 </body>
 <script type="text/javascript">
-        var canvas = document.getElementsByTagName('canvas')[0];
+        var canvas = document.getElementById('canvas1');
         canvas.width = 1000;
         canvas.height = 600;
         canvas.style.display = "block";
@@ -20,10 +21,23 @@
         var image = new Image();
         image.src = 'test.jpg';
 
+        var canvas2 = document.getElementById('canvas2');//第二个canvas开始
+        canvas2.width = 450;
+        canvas2.height = 50;
+
+        var context2 = canvas2.getContext('2d');
+
+        context2.beginPath();
+        context2.font = 'bold 40px Arial';
+        context2.fillStyle = 'rgba(255,255,255,0.7)';
+        //context2.textBaseline = 'top';
+        context2.fillText('--www.shinigami.com--',0,30);//第二个canvas结束
+
         var scale = slider.value;
 
         image.onload = function(){
             cxt.drawImage(image,0,0);
+            cxt.drawImage(canvas2,canvas.width - canvas2.width,canvas.height - canvas2.height);
 
            slider.onmousemove = function(){
                 scale = slider.value;
@@ -33,11 +47,22 @@
                 cxt.clearRect(0,0,canvas.width,canvas.height);
                 cxt.drawImage(image,dx,dy,image.width * scale,image.height * scale);
 
+                if(scale >= 1)
+                    cxt.drawImage(canvas2,canvas.width - canvas2.width,canvas.height - canvas2.height);
+                
+                else
+                    cxt.drawImage(canvas2,dx + image.width * scale - canvas2.width,dy + image.height * scale - canvas2.height);
+                
 
             }
             
-        }
+        }//图片缩放功能
         
+
+
+
+
+
 
 </script>
 </html>
