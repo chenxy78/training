@@ -96,8 +96,10 @@ function welcome(){
 }
 
 function addPic(){
-	var img = document.getElementById('img');
+	var img = new Image();
 	img.src = "cxy.jpg";
+	var imgDiv = document.getElementById('imgDiv');
+	imgDiv.appendChild(img);
 }
 
 window.onload = function(){
