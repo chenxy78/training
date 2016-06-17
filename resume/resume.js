@@ -85,12 +85,6 @@ document.onkeyup = function(event){
 	}
 }
 
-setInterval(function(){
-	welcome();
-},70);
-
-
-
 function welcome(){
 	charactor.innerHTML = 'welcome&nbsp&nbspto&nbsp&nbspmy&nbsp&nbspresume&nbsp~~';
 	left -= 5;
@@ -101,4 +95,14 @@ function welcome(){
 	
 }
 
+function addPic(){
+	var img = document.getElementById('img');
+	img.src = "cxy.jpg";
+}
 
+window.onload = function(){
+	setInterval(function(){
+		welcome();
+	},70);
+	addPic();
+}
